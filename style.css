@@ -1,0 +1,50 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Tahoma", sans-serif;
+    background-color: #fff;
+  }
+  
+  /* Custom card styling */
+  .card {
+    border: none;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Navigation styling */
+  nav a {
+    transition: all 0.3s;
+  }
+  
+  nav a:hover {
+    background-color: #27ae60;
+    color: #fff !important;
+  }
+  
+  /* Chart containers */
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  /* Bootstrap custom buttons */
+  .btn {
+    border-radius: 5px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card {
+      margin-bottom: 20px;
+    }
+  }
+  

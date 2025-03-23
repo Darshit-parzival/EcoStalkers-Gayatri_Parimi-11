@@ -1,0 +1,33 @@
+// Pin definitions
+const int voltagePin = A0;    // ZMPT101B Output connected to A0
+const int currentPin = A1;    // ACS712 Output connected to A1
+
+// ACS712 sensitivity (for 5A model, adjust if using 20A or 30A)
+float sensitivity = 0.185;    // 185mV/A for ACS712-05B
+
+void setup() {
+  Serial.begin(9600);         // Initialize serial communication
+}
+
+void loop() {
+  // Read both sensors
+  int voltageRaw = analogRead(voltagePin);  // Voltage sensor
+  int currentRaw = analogRead(currentPin);  // Current sensor
+
+  // Convert raw analog values to voltage (0-5V range)
+  float voltage = (voltageRaw * 5.0) / 1023.0;  
+  float currentVoltage = (currentRaw * 5.0) / 1023.0;
+
+  // Convert to RMS Voltage for AC
+  float rmsVoltage = voltage * sqrt(2);
+
+  // Calculate current in Amperes
+  float current = (currentVoltage - 2.5) / sensitivity;
+
+  // Transmit data over serial in CSV format: voltage, current
+  Serial.print(rmsVoltage, 3);
+  Serial.print(",");
+  Serial.println(current, 3);
+
+  delay(500);
+}
